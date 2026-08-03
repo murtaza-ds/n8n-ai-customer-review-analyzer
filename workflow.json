@@ -1,0 +1,393 @@
+{
+  "name": "Freelancer Project #3 (Customer Review Analyzer)",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -1040,
+        -160
+      ],
+      "id": "7f9eaed7-a960-4fe9-af8b-5ffe1bb6012e",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "c6ff54d0-e9bc-4800-b595-abf8a7b567c7",
+              "name": "customer_name",
+              "value": "Murtaza",
+              "type": "string"
+            },
+            {
+              "id": "fde3649f-bcd9-4eaa-b0b1-5f3e96383688",
+              "name": "resturent ",
+              "value": "=KFC",
+              "type": "string"
+            },
+            {
+              "id": "2b080002-5156-487c-bc8d-a37948bd8403",
+              "name": "resturent_review",
+              "value": "=The food was delicious, but the service was extremely slow and our drinks arrived very late. Overall, I'm not sure if I would visit again.",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -864,
+        -160
+      ],
+      "id": "2e391e08-a493-4df9-bd9b-4ec10d96a8ef",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=You are a professional rating classifier\n\nyour role is to classify the customer review and tell that is the review negative or positve or neutral and give the rating too \n\ninput :  {{ $json.resturent_review }}\n\noutput should be in jason and in actual object \n\nstrickly your output should be in two words :\nsentiment \nRating\n",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        -704,
+        -160
+      ],
+      "id": "fc606289-fb9b-4c32-8da0-86cea604a505",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "model": "nvidia/nemotron-3-ultra-550b-a55b:free",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        -736,
+        64
+      ],
+      "id": "97b44890-326e-4a02-b9fb-74ed224626aa",
+      "name": "OpenRouter Chat Model",
+      "credentials": {
+        "openRouterApi": {
+          "id": "SdM4AeOWd9ub8tMt",
+          "name": "OpenRouter account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1UwnEz8HdMQ-7wOxCCTKIEx8WTWODEoHOSlJV8N7sOJA",
+          "mode": "list",
+          "cachedResultName": "Resturent Reviews",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1UwnEz8HdMQ-7wOxCCTKIEx8WTWODEoHOSlJV8N7sOJA/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1UwnEz8HdMQ-7wOxCCTKIEx8WTWODEoHOSlJV8N7sOJA/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Customer": "={{ $('Edit Fields').item.json.customer_name }}",
+            "Sentiment": "={{ $json.sentiment }}",
+            "Rating": "={{ $json.Rating }}",
+            "    Review": "={{ $('Edit Fields').item.json.resturent_review }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Customer",
+              "displayName": "Customer",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "    Review",
+              "displayName": "    Review",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Sentiment",
+              "displayName": "Sentiment",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Rating",
+              "displayName": "Rating",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        -208,
+        -160
+      ],
+      "id": "62ac9b9f-e10a-4aee-bca9-89df109f6d06",
+      "name": "Append row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "WqfhZZWLHYH7zzeJ",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "loose",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $('Code in JavaScript').item.json.Rating }}",
+                    "rightValue": 2,
+                    "operator": {
+                      "type": "number",
+                      "operation": "lte"
+                    },
+                    "id": "8de7964b-8f90-40e4-ab69-7c6392a0fd03"
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "loose",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "7f935f25-ac38-4dce-b978-2ffd3a1a2461",
+                    "leftValue": "={{ $('Code in JavaScript').item.json.Rating }}",
+                    "rightValue": 5,
+                    "operator": {
+                      "type": "number",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.4,
+      "position": [
+        0,
+        -160
+      ],
+      "id": "7177032c-734c-4098-86a3-a36a0ba818aa",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "jsCode": "const aiOutput = $json.output;\n\nconst parsed = JSON.parse(aiOutput);\n\nreturn {\n  json: parsed\n};"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -384,
+        -160
+      ],
+      "id": "b9dc6156-65b9-45b7-818d-cffae88183eb",
+      "name": "Code in JavaScript"
+    },
+    {
+      "parameters": {
+        "chatId": "7220042018",
+        "text": "=🚨 Restaurant Review Alert\n\n⚠️ A customer has submitted a low-rated review.\n\n👤 Customer:\n{{ $('Edit Fields').item.json.customer_name }}\n\n🍽️ Restaurant:\n{{ $('Edit Fields').item.json['resturent '] }}\n\n📝 Review:\n{{ $('Edit Fields').item.json.resturent_review }}\n\n🤖 AI Sentiment:\n{{ $json.Sentiment }}\n\n⭐ AI Rating:\n{{ $('Code in JavaScript').item.json.Rating }}/5\n\n📢 Action Required:\nPlease review this feedback and contact the customer if necessary to improve their experience.",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        224,
+        -304
+      ],
+      "id": "03599dac-1eeb-408d-9182-abaf16c6bc8a",
+      "name": "Manager",
+      "webhookId": "6e0f9f04-607a-43b4-b867-593caa80dfe0",
+      "credentials": {
+        "telegramApi": {
+          "id": "Ncqh5wYknTrKpftw",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "7220042018",
+        "text": "=🎉 Excellent Customer Review!\n\n👤 Customer:\n{{$('Edit Fields').item.json.customer_name}}\n\n🍽️ Restaurant:\n{{ $('Edit Fields').item.json['resturent '] }}\n\n📝 Review:\n{{ $('Edit Fields').item.json.resturent_review }}\n\n🤖 AI Sentiment:\n{{ $('Code in JavaScript').item.json.sentiment }}\n\n⭐ AI Rating:\n{{ $('Code in JavaScript').item.json.Rating }}/5\n\n📈 Marketing Opportunity:\nThis review could be used as a testimonial or highlighted in promotional campaigns.",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        224,
+        -64
+      ],
+      "id": "ff869ec4-69c3-452f-bc86-482f006875f2",
+      "name": "Marketing",
+      "webhookId": "012dfc10-e8c4-447a-8f8f-31740490be25",
+      "credentials": {
+        "telegramApi": {
+          "id": "Ncqh5wYknTrKpftw",
+          "name": "Telegram account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenRouter Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append row in sheet": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "Manager",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Marketing",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "Append row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "versionId": "315d0bc0-02e6-41a1-83d4-2ed8c9285983",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "ba1de6031139f67cf2dd982a592c46dacc2c07277b3697062f0e9924473d18c0"
+  },
+  "nodeGroups": [],
+  "id": "bKihTxT9cNFAL68t",
+  "tags": []
+}
