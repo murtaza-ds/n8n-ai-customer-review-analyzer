@@ -1,36 +1,28 @@
-# 👋 Hi, I'm Muhammad Murtaza
+# AI Customer Review Analyzer
 
-🎓 **BS Data Science Student** passionate about Artificial Intelligence, Data Analytics, and Workflow Automation.
+## 📌 Overview
 
-## 🚀 About Me
+This n8n workflow automatically analyzes customer reviews using AI, classifies their sentiment, stores the results in Google Sheets, and sends Telegram notifications based on the sentiment.
 
-* 🤖 Building AI-powered workflows using **n8n**
-* 🐍 Learning **Python** for Data Science and Automation
-* 🗄️ Improving my **SQL** skills for analytics
-* 📊 Currently completing the **Google Data Analytics Professional Certificate**
-* 💡 Passionate about solving real business problems with AI and automation
+## 🚀 Features
 
-## 🛠️ Tech Stack
+* AI-powered sentiment analysis
+* Classifies reviews as Positive, Neutral, or Negative
+* Stores results in Google Sheets
+* Sends Telegram alerts
+* Built with n8n and OpenRouter LLMs
 
-* Python
-* SQL
+## 🛠️ Technologies Used
+
 * n8n
-* Git & GitHub
+* OpenRouter AI
 * Google Sheets
-* Telegram API
-* VS Code
+* Telegram Bot API
 
-## 📂 Featured Projects
+## 📂 Files
 
-* 🤖 AI Customer Review Analyzer
-* 📧 AI Email Ticket Classifier
-* 📄 AI Resume Screening System
-* 💼 AI Sales Lead Qualification
-* 🧾 AI Invoice Processing
-* 📅 AI Meeting Request Analyzer
+* `workflow.json` – Complete n8n workflow
 
-## 🎯 Current Goal
+## 👨‍💻 Author
 
-Build real-world AI automation projects while developing my skills in Data Science, Python, SQL, and workflow automation.
-
-⭐ *Always learning, always building.*
+Muhammad Murtaza
