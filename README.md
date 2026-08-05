@@ -2,17 +2,20 @@
 
 ## 📌 Overview
 
-The AI Customer Review Analyzer is an n8n workflow that automatically processes customer reviews using Artificial Intelligence. It analyzes customer feedback, determines the sentiment, stores the results in Google Sheets, and sends Telegram notifications based on the review outcome.
+The AI Customer Review Analyzer is an AI-powered automation workflow built with **n8n**. It automatically analyzes customer reviews, determines customer sentiment, assigns a review score and priority, stores the results in Google Sheets, and notifies the team through Telegram when important reviews require attention.
+
+This workflow helps businesses process customer feedback automatically instead of manually reading every review.
 
 ---
 
 ## 🚀 Features
 
 * Analyze customer reviews using AI
-* Detect customer sentiment
-* Classify reviews automatically
-* Store results in Google Sheets
-* Send Telegram notifications
+* Detect customer sentiment and emotion
+* Generate an AI review score
+* Classify review priority
+* Store analyzed results in Google Sheets
+* Send Telegram notifications for important reviews
 * Automate customer feedback processing
 
 ---
@@ -39,7 +42,7 @@ The AI Customer Review Analyzer is an n8n workflow that automatically processes 
 
 ---
 
-## 🤖 AI Output
+## 🤖 AI Analysis
 
 ![AI Output](ai-output.png)
 
@@ -53,7 +56,27 @@ The AI Customer Review Analyzer is an n8n workflow that automatically processes 
 
 ## 📈 Business Value
 
-This workflow helps businesses automatically analyze customer feedback, identify customer sentiment, reduce manual review processing, and notify teams instantly when important feedback is received. It improves efficiency while helping businesses respond to customer opinions more quickly.
+Businesses receive hundreds of customer reviews every day. Reading each review manually is slow and inefficient.
+
+This workflow automatically identifies customer sentiment, highlights important reviews, stores structured data for reporting, and instantly notifies the support team when urgent attention is needed. This reduces manual work, improves response time, and helps businesses make better decisions based on customer feedback.
+
+---
+
+## 🔄 Workflow Process
+
+```text
+Customer Review
+        ↓
+AI Analysis
+        ↓
+Parse AI Response
+        ↓
+Store Results in Google Sheets
+        ↓
+Priority Check
+        ↓
+Telegram Notification
+```
 
 ---
 
@@ -62,4 +85,5 @@ This workflow helps businesses automatically analyze customer feedback, identify
 **Muhammad Murtaza**
 
 BS Data Science Student | AI Automation | Python | SQL | n8n
+
 
