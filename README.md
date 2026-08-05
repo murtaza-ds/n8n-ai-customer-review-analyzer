@@ -1,28 +1,65 @@
-# AI Customer Review Analyzer
+# 🤖 AI Customer Review Analyzer
 
 ## 📌 Overview
 
-This n8n workflow automatically analyzes customer reviews using AI, classifies their sentiment, stores the results in Google Sheets, and sends Telegram notifications based on the sentiment.
+The AI Customer Review Analyzer is an n8n workflow that automatically processes customer reviews using Artificial Intelligence. It analyzes customer feedback, determines the sentiment, stores the results in Google Sheets, and sends Telegram notifications based on the review outcome.
+
+---
 
 ## 🚀 Features
 
-* AI-powered sentiment analysis
-* Classifies reviews as Positive, Neutral, or Negative
-* Stores results in Google Sheets
-* Sends Telegram alerts
-* Built with n8n and OpenRouter LLMs
+* Analyze customer reviews using AI
+* Detect customer sentiment
+* Classify reviews automatically
+* Store results in Google Sheets
+* Send Telegram notifications
+* Automate customer feedback processing
 
-## 🛠️ Technologies Used
+---
+
+## 🛠️ Tech Stack
 
 * n8n
-* OpenRouter AI
+* Google Gemini AI
 * Google Sheets
 * Telegram Bot API
+* JavaScript (Code Node)
 
-## 📂 Files
+---
 
-* `workflow.json` – Complete n8n workflow
+## 📸 Workflow
+
+![Workflow](workflow.png)
+
+---
+
+## 📥 Sample Input
+
+![Customer Review](input-review.png)
+
+---
+
+## 🤖 AI Output
+
+![AI Output](ai-output.png)
+
+---
+
+## 📱 Telegram Notification
+
+![Telegram Output](telegram-output.png)
+
+---
+
+## 📈 Business Value
+
+This workflow helps businesses automatically analyze customer feedback, identify customer sentiment, reduce manual review processing, and notify teams instantly when important feedback is received. It improves efficiency while helping businesses respond to customer opinions more quickly.
+
+---
 
 ## 👨‍💻 Author
 
-Muhammad Murtaza
+**Muhammad Murtaza**
+
+BS Data Science Student | AI Automation | Python | SQL | n8n
+
