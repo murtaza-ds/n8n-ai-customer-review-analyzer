@@ -38,19 +38,19 @@ This workflow helps businesses process customer feedback automatically instead o
 
 ## 📥 Sample Input
 
-![Customer Review](input-review.png)
+![Customer Review](input.png)
 
 ---
 
 ## 🤖 AI Analysis
 
-![AI Output](ai-output.png)
+![AI Output](Ai_output.png)
 
 ---
 
 ## 📱 Telegram Notification
 
-![Telegram Output](telegram-output.png)
+![Telegram Output](Telegram_output.png)
 
 ---
 
@@ -85,5 +85,6 @@ Telegram Notification
 **Muhammad Murtaza**
 
 BS Data Science Student | AI Automation | Python | SQL | n8n
+
 
 
